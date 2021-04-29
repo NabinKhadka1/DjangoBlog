@@ -1,0 +1,19 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'list.css' %}">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Document</title>
+</head>
+<body>
+    {% for post in posts %}
+        <strong><a href="{% url 'blog:blog_detail' post.id %}"> {{ post.title }} </a></strong>
+        <br>
+    
+
+    {% endfor %}
+
+    post_value: {{ post_value }}
+    
+</body>
+</html>
