@@ -1,4 +1,8 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'details.css' %}">
 <strong>Title:</strong> {{ post.title }} <br>
 <strong>Author:</strong> {{ post.author }} <br>
 <strong>Body:</strong> {{ post.body }} <br>
 <strong>Created:</strong> {{ post.created }}  <br>
+<br>
+<img src="{{ MEDIA_URL }}{{ post.photo }}" alt="Image NOT Found">

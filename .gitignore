@@ -41,7 +41,8 @@ parts/
 sdist/ 
 var/ 
 bin/
-lib64/
+lib64
+lib
 pyvenv.cfg
 share/
 wheels/ 

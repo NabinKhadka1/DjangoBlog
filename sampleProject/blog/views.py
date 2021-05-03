@@ -4,6 +4,7 @@ from blog.models import Post
 from django.shortcuts import redirect
 from django.urls import reverse
 from django.contrib.auth.models import User
+from .forms import PostForm
 
 # posts = [
 #     {
@@ -29,9 +30,9 @@ from django.contrib.auth.models import User
 # Create your views here.
 def blog_list(request):
     posts = Post.objects.all()
+
     context = {
-        'posts': posts,
-        'post_value':1
+        'posts': posts
         }
     return render(request,'blog/list.html',context)
     
@@ -48,3 +49,13 @@ def blog_create(request):
         return redirect(reverse('blog:list_detail'))
     context = {'users':User.objects.all()}
     return render(request,'blog/create.html',context)
+
+def create_django_forms(request):
+    forms = PostForm()
+    if request.method == 'POST':
+        forms = PostForm(request.POST,request.FILES)
+        if forms.is_valid():
+            forms.save()
+            return redirect(reverse('blog:list_detail'))
+    context = {'form':forms}
+    return render(request,'blog/create_django_form.html',context)
