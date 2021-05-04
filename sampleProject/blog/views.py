@@ -59,3 +59,13 @@ def create_django_forms(request):
             return redirect(reverse('blog:list_detail'))
     context = {'form':forms}
     return render(request,'blog/create_django_form.html',context)
+
+def update_django_forms(request,id):
+    post = Post.objects.get(pk = id)
+    forms = PostForm(instance=post)
+    if request.method == 'POST':
+        forms = PostForm(request.POST,request.FILES,instance=post)
+        if forms.is_valid():
+            forms.save()
+            return redirect(reverse('blog:list_detail'))
+    return render(request,'blog/create_django_form.html',context={'form':forms})
